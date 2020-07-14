@@ -11,12 +11,30 @@ const Links = () => {
 
   const addOrEditLink = async (linkObject) => {
 
-     await db.collection('links').doc().set(linkObject);
+      try{
 
-     toast('Add', {
-         type: 'success',
-         autoClose: 2000
-     })
+         if(currentId===""){
+            await db.collection('links').doc().set(linkObject);
+            toast('Add', {
+                type: 'success',
+                autoClose: 2000
+            })
+         }else{
+           await db.collection('links').doc(currentId).update(linkObject);
+           toast('Update', {
+                type: 'info',
+                autoClose: 2000
+            });
+            setCurrentId("");
+         }
+
+      }catch(err){
+         toast('Error '+err, {
+            type: 'error',
+            autoClose: 2000
+        })
+      }
+ 
     
 
   }
@@ -54,7 +72,7 @@ const Links = () => {
    return(
     <div>
        <div className="col-md-4 p-2">
-         <LinkForm addOrEditLink ={addOrEditLink} />
+         <LinkForm {...{addOrEditLink, currentId, links}}  />
        </div>
        <h2>Links</h2>
        <div className="col-md-8 p-2">
