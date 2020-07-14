@@ -20,10 +20,11 @@ const LinkForm = (props) => {
  const handleSubmit = e => {
      e.preventDefault();
      props.addOrEditLink(values);
+     console.log("end");
      setValues({
-      url: '',
-      name: '', 
-      description: ''
+      url: "",
+      name: "", 
+      description: ""
    });
  }
 

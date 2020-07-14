@@ -2,6 +2,9 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Links from './components/Links';
+import {ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function App() {
 
@@ -9,7 +12,11 @@ function App() {
 
   return (
     <div className="container p-4">
-        <Links/>
+      <div className="row">
+          <Links/>
+      </div>
+      <ToastContainer/>
+       
     </div>
   );
 }
